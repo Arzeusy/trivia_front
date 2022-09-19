@@ -29,19 +29,12 @@
 <mat-menu #signMenu="matMenu" xPosition="after" class="menu-arrow"  >
     <mat-card class="example-card elevation-0"  (click)="$event.stopPropagation()" >
         <mat-card-header>
-            <mat-card-title>Shiba Inu</mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+            <mat-card-title>Bienvenido jugador</mat-card-title>
         </mat-card-header>
         <mat-card-content (click)="$event.stopPropagation()">
-            <p>
-                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                bred for hunting.
-            </p>
+            <app-signin *ngIf="visiblefrm" (authenticate)="onSubmit($event)"></app-signin>
+            <app-signup *ngIf="!visiblefrm" (createuser)="onSubmit($event)"></app-signup>
         </mat-card-content>
-        <mat-card-actions>
-            <button mat-button (click)="onSubmit()">LIKE</button>
-            <button mat-button>SHARE</button>
-        </mat-card-actions>
+
     </mat-card>
 </mat-menu>

@@ -6,6 +6,8 @@ import { MatMenuTrigger } from '@angular/material/menu';
   templateUrl: './sidebar.component.html',
 })
 export class SidebarComponent implements OnInit {
+  visiblefrm = false;
+
   @ViewChild(MatMenuTrigger) trigger!: MatMenuTrigger ;
   
   constructor() { }
@@ -13,7 +15,8 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  onSubmit(event: any) {
+    console.log(event)
     this.trigger.closeMenu(); 
   }
 }

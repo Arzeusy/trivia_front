@@ -20,7 +20,7 @@
       }
     }
     .content {
-      background-color: var(--gray--light);
+      background-color: var(--gray-deep);
     }
   }
 }
@@ -40,7 +40,7 @@
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 10px solid white;
+  border-bottom: 10px solid var(--gray--light);
   left: 41px;
   bottom: 103%;
 }
@@ -51,6 +51,9 @@
   background-color: transparent;
   .mat-menu-content:not(:empty) {
     padding: 0;
+  }
+  .mat-card {
+    background-color: var(--gray--light);
   }
 }
 
