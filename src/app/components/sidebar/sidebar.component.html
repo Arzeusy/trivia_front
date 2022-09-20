@@ -1,8 +1,11 @@
 
 <div class="row pt-2">
     <div class="col-12 p-0">
-        <button mat-icon-button color="primary" [matMenuTriggerFor]="signMenu">
+        <button mat-icon-button color="primary" [matMenuTriggerFor]="signMenu" *ngIf="!obtNickname.length">
             <mat-icon>account_circle</mat-icon>
+        </button>
+        <button mat-icon-button color="primary"  *ngIf="obtNickname.length" matTooltipPosition="after" [matTooltip]="obtNickname">
+            <img src="assets/img/profile.png" alt="" class="profile-picture">
         </button>
     </div>
     <div class="col-12 p-0">
@@ -34,6 +37,16 @@
         <mat-card-content (click)="$event.stopPropagation()">
             <app-signin *ngIf="visiblefrm" (authenticate)="onSubmit($event)"></app-signin>
             <app-signup *ngIf="!visiblefrm" (createuser)="onSubmit($event)"></app-signup>
+            <div class="row justify-content-end">
+                <div class="col-6">
+                    <mat-hint (click)="verFrm()" class="hint" >
+                       <u>
+                            {{ visiblefrm ? "Crea tu cuenta!": "Identificate!"}}
+                       </u>
+                    </mat-hint>
+
+                </div>
+            </div>
         </mat-card-content>
 
     </mat-card>
