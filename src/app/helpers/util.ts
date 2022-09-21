@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -20,7 +20,12 @@ export default class Util {
 
 	// Angular forms
 
-	static controlNoValido(forma: FormGroup, controlName: string): boolean {
+	static controlNoValido(forma: any, controlName: string): boolean {
+		const control = forma.get(controlName);
+		return control!.invalid && control!.touched;
+	}
+
+	static controlNoValidoAbs(forma: AbstractControl, controlName: string): boolean {
 		const control = forma.get(controlName);
 		return control!.invalid && control!.touched;
 	}
