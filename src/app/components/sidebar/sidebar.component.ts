@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AuthService} from 'src/app/services/auth.service'
 
 @Component({
@@ -13,6 +14,7 @@ export class SidebarComponent implements OnInit {
   
   constructor(
     private authService: AuthService,
+     private route: Router,
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +35,10 @@ export class SidebarComponent implements OnInit {
 
   verFrm() {
     this.visiblefrm = !this.visiblefrm;
+  }
+
+  goRoute(ruta: string) {
+    this.route.navigate([ruta]);
   }
 
 }

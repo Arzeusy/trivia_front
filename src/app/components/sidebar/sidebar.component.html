@@ -9,18 +9,28 @@
         </button>
     </div>
     <div class="col-12 p-0">
-        <button mat-icon-button color="accent">
+        <button mat-icon-button color="accent" *ngIf="obtNickname.length" (click)="goRoute('')">
+            <mat-icon>home</mat-icon>
+        </button>
+    </div>
+    <div class="col-12 p-0">
+        <button mat-icon-button color="accent" *ngIf="obtNickname.length" (click)="goRoute('quiz')">
+            <mat-icon>question_answer</mat-icon>
+        </button>
+    </div>
+    <div class="col-12 p-0">
+        <button mat-icon-button color="accent"  (click)="goRoute('rank')">
             <mat-icon>stars</mat-icon>
         </button>
     </div>
     <div class="col-12 p-0">
-        <button mat-icon-button color="accent" >
+        <button mat-icon-button color="accent"  *ngIf="obtNickname.length"  (click)="goRoute('game')">
             <mat-icon>sports_esports</mat-icon>
         </button>
     </div>
 
     <div class="col-12 p-0">
-        <button mat-icon-button color="accent">
+        <button mat-icon-button color="accent"  *ngIf="obtNickname.length">
             <mat-icon>logout</mat-icon>
         </button>
     </div>

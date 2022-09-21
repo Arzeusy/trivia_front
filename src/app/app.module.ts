@@ -36,6 +36,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { TriviaComponent } from './pages/trivia/trivia.component';
+import { GameComponent } from './pages/game/game.component';
+import { RankComponent } from './pages/rank/rank.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     SidebarComponent,
     SigninComponent,
     SignupComponent,
+    TriviaComponent,
+    GameComponent,
+    RankComponent,
   ],
   imports: [
     BrowserModule,
