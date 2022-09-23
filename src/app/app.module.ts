@@ -13,6 +13,8 @@ import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 
 
+import { NgxSpinnerModule } from "ngx-spinner";
+
 //  material module imports 
 
 import {MatCardModule} from '@angular/material/card';
@@ -57,6 +59,7 @@ import { RankComponent } from './pages/rank/rank.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxSpinnerModule,
     MatIconModule,
     MatButtonModule,
     MatMenuModule,

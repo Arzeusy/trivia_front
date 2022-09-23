@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { TriviaService } from 'src/app/services/trivia.service'
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import Util from './../../helpers/util';
+import { NgxSpinnerService } from 'ngx-spinner';
  
 
 @Component({
@@ -27,20 +28,24 @@ export class TriviaComponent implements OnInit {
 
 
   constructor(
-        private formBuilder: FormBuilder,
-      private triviaService: TriviaService,
+    private formBuilder: FormBuilder,
+    private triviaService: TriviaService,
+    private spinner: NgxSpinnerService,
   ) {
-    this.createFrm();
-    [1,2,3].forEach(element => {
-      this.createFrmA();
-       (this.frmQ.get("answers") as FormArray).push(this.frmA);
-    });
+      this.crearTrivia();
   }
 
   ngOnInit(): void {
     this.getEpisodes();
   }
 
+  crearTrivia() {
+     this.createFrm();
+    [1,2,3].forEach(element => {
+      this.createFrmA();
+       (this.frmQ.get("answers") as FormArray).push(this.frmA);
+    });
+  }
 
   createFrm() {
     this.frmQ = this.formBuilder.group({
@@ -80,10 +85,13 @@ export class TriviaComponent implements OnInit {
 
   async onSubmit() {
     console.log(this.frmQ.value);
+    this.spinner.show()
     if (this.frmQ.invalid) {
       this.utilR.touchAllFormControls(this.frmQ);
     } else {
       let resp = await this.triviaService.newQuestion(this.frmQ.value);
+      this.crearTrivia();
+      this.spinner.hide()
       console.log(resp);
       // this.createFrm();
     }
