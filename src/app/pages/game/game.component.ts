@@ -23,6 +23,7 @@ export class GameComponent implements OnInit {
   episodeName: string= "";
   episodeCode: string = "";
   
+  onGame: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,6 +33,7 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getEpisodes();
     this.createFrm()
   }
 
@@ -39,14 +41,31 @@ export class GameComponent implements OnInit {
 
   createFrm() {
     this.frmQ = this.formBuilder.group({
-      episode: [null, [ Validators.required]],
-      question: ['', [Validators.required, Validators.minLength(4)]],
-      points: [0, [Validators.required, Validators.min(1)]],
-      answers: this.formBuilder.array([], [Validators.minLength(3)]),
+      episodes: [null, [ Validators.required]],
     });
   }
 
+  async getEpisodes() {
+    let Episode = await this.triviaService.episodeLst();
+    this.lstEpisode = Episode.results;
+    this.infoEpisode = Episode.info;
+    this.lstNumberEpisode = Array(this.infoEpisode.count).fill(1).map((x, i) => i + 1);
+  }
 
+    async changeSelectEpisode(dato:any){
+    let Episode = await this.triviaService.episodeLst(dato.value);
+    this.episodeName = Episode.name;
+    this.episodeCode = Episode.episode;    
+  }
+
+  goGame() {
+    if (this.frmQ.valid) {
+      this.onGame = !this.onGame;
+    } else {
+      this.utilR.touchAllFormControls(this.frmQ)
+    }
+    
+  }
 
 
 }

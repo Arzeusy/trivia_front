@@ -3,9 +3,41 @@
 </div>
 <div class="row  justify-content-center align-items-center h-100" >
     <div class="card-center col-11 row justify-content-center align-items-center " style="z-index: 2;">
-       
-        <div class="col-8">
+        <div class="col-4">
         </div>
+        <div class="col-8" *ngIf="!onGame">
+            <form autocomplete="off" [formGroup]="frmQ">
+                <div class="row">
+                    <div class="col-12 txt_center">
+                        <img src="assets/img/Rick-and-Morty.png" class=" img2">
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Episodios</mat-label>
+                            <mat-select class="myPanelClass" formControlName="episodes" multiple
+                                (selectionChange)="changeSelectEpisode($event)">
+                                <ng-container *ngFor="let item of lstNumberEpisode">
+                                    <mat-option value="{{item}}">EP. {{item}}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                            <mat-error *ngIf="utilR.controlNoValido(frmQ, 'episodes')">
+                                <strong>requerido</strong>
+                            </mat-error>
+                        </mat-form-field>
+            
+                    </div>
+                    <div class="col-6">
+                        <button mat-flat-button color="accent" (click)="goGame()">Ve pequeño Rick!</button>
+                    </div>
+                    
+                </div>
+            </form>
 
+
+
+        </div>
+        <div class="col-8" *ngIf="onGame">
+
+        </div>
     </div>
 </div>
