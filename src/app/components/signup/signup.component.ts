@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms'
+import { AuthService } from 'src/app/services/auth.service';
  
 @Component({
   selector: 'app-signup',
@@ -11,7 +12,8 @@ export class SignupComponent implements OnInit {
   frm!: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
   ) { this.createFrm() }
 
   ngOnInit(): void {
@@ -41,9 +43,15 @@ export class SignupComponent implements OnInit {
     return "";
   }
 
-  onAuth() {
-    this.createuser.emit(this.frm.value);
-  }
 
+ async onAuth() {
+   let authenticated = await this.authService.signup(
+     this.frm.value
+   );
+    console.log("info", authenticated)
+    // if (authenticated) {
+    //   let user = await this.authService.infoUser();
+    // }
+  }
 
 }

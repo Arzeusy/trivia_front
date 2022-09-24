@@ -71,5 +71,27 @@ export class AuthService {
 	}
 
 
+	signup(  data:any ): Promise<any>  {
+		let apiData = this.http.post(
+			`${this.url}/signup`,
+			{ ...data }
+		)
+		.toPromise()
+			.then((res:any) => {
+				console.log(res);
+				this.saveInfo(res.data._id, "jwt")
+				this.saveInfo(res.data.nickname, "nickname")
+				return true;
+			})
+        .catch((err:any) => { console.log ('error'); return false});
+			
+		return apiData;
+	}
+
+	logout() {
+		localStorage.removeItem("jwt");
+		localStorage.removeItem("nickname");
+	}
+
 
 }

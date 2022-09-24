@@ -70,7 +70,7 @@ import { RankComponent } from './pages/rank/rank.component';
     MatButtonToggleModule,
     MatExpansionModule,
     MatDatepickerModule,
-    MatFormFieldModule,
+    MatFormFieldModule, 
     MatSelectModule,
     MatTableModule,
     MatPaginatorModule,

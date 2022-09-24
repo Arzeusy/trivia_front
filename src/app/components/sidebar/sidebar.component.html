@@ -30,7 +30,7 @@
     </div>
 
     <div class="col-12 p-0">
-        <button mat-icon-button color="accent"  *ngIf="obtNickname.length">
+        <button mat-icon-button color="accent"  *ngIf="obtNickname.length" (click)="logout()">
             <mat-icon>logout</mat-icon>
         </button>
     </div>
