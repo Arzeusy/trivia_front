@@ -131,3 +131,14 @@ img {
     z-index: 1;
   }
 }
+
+.svg {
+  max-width: 500px;
+  // height: 100%;
+  // position: absolute;
+  pointer-events: none;
+}
+
+.btn-w {
+  width: 100%;
+}

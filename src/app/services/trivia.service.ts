@@ -56,4 +56,50 @@ export class TriviaService {
 	}
 
 
+	getQuestions(Episode:number[]): Promise<any>  {
+    	let id = localStorage.getItem("jwt");
+		let apiData = this.http.post(
+			`${this.url}/onGame`,
+			{ Episode }
+		).toPromise()
+		.then((res:any) => {
+        		return res;
+		})
+      	.catch((err:any) => { console.log ('error'); return false});
+			
+		return apiData;
+	}
+
+	getAnswers(id:number): Promise<any>  {
+    	// let id = localStorage.getItem("jwt");
+		let apiData = this.http.get(
+			`${this.url}/answers/${id}`,
+			{  }
+		).toPromise()
+		.then((res:any) => {
+        		return res;
+		})
+      	.catch((err:any) => { console.log ('error'); return false});
+			
+		return apiData;
+	}
+
+	savePoints(points:number): Promise<any>  {
+    	let id = localStorage.getItem("jwt");
+		let apiData = this.http.post(
+			`${this.url}/savePoints/${id}`,
+			{ points }
+		).toPromise()
+		.then((res:any) => {
+        		return res;
+		})
+      	.catch((err:any) => { console.log ('error'); return false});
+			
+		return apiData;
+	}
+
+
+	
+
+
 }

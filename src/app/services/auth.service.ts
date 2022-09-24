@@ -93,5 +93,20 @@ export class AuthService {
 		localStorage.removeItem("nickname");
 	}
 
+	rank(   ): Promise<any>  {
+		let apiData = this.http.post(
+			`${this.url}/rank`,
+			{  }
+		)
+		.toPromise()
+			.then((res:any) => {
+				return res;
+			})
+        .catch((err:any) => { console.log ('error'); return false});
+			
+		return apiData;
+	}
+
+
 
 }

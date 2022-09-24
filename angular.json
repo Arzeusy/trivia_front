@@ -35,6 +35,7 @@
             ],
             "styles": [
               "src/assets/css/custom-theme.scss",
+              "./node_modules/ngx-spinner/animations/fire.css",
               "src/styles.sass"
             ],
             "scripts": []

@@ -4,6 +4,14 @@
 <div class="row  justify-content-center align-items-center h-100" >
     <div class="card-center col-11 row justify-content-center align-items-center " style="z-index: 2;">
         <div class="col-4">
+                <!-- <img src="assets/img/game.png" class=" logo"> -->
+                <div class="svg" id="svg" *ngIf="seeAnimation" >
+                        <ng-lottie 
+                        [options]="options" 
+                        (complete)="loopComplete($event)"
+                        (animationCreated)="onAnimate($event)"
+                    ></ng-lottie>
+                </div> 
         </div>
         <div class="col-8" *ngIf="!onGame">
             <form autocomplete="off" [formGroup]="frmQ">
@@ -26,18 +34,56 @@
                         </mat-form-field>
             
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 d-flex align-items-center">
                         <button mat-flat-button color="accent" (click)="goGame()">Ve pequeño Rick!</button>
                     </div>
-                    
+                    <div class="col-12">
+                        <mat-chip-list aria-label="Dog selection">
+                            <mat-chip>
+                                <mat-icon matChipAvatar >stars</mat-icon>
+                                Elije los episodios que prefieras y recibiras 10 preguntas, Listo?
+                            </mat-chip>
+                        </mat-chip-list>
+                    </div>
                 </div>
             </form>
 
 
 
         </div>
-        <div class="col-8" *ngIf="onGame">
+        <div class="col-8 justify-content-center txt_center" *ngIf="onGame  " >
+            <img src="assets/img/Rick-and-Morty.png" class=" img2">
+            <div>
+                <div class="row justify-content-end">
+                    <div class="col-12">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Pregunta</mat-label>
+                            <label matPrefix>¿</label>
+                            <input type="text" matInput  [formControl]="actualQuestion" >
+                            <label matSuffix>?</label>
+                            <mat-error *ngIf="preguntaTerminada">
+                                <strong>Incorrecto</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <ng-container *ngFor="let item of lstanswers">
+                        <div class="col-4">
+                            <button *ngIf="!preguntaTerminada" mat-flat-button  [color]="'primary'" class="btn-w" (click)="validAnswer(item)">{{item.answer}}</button>
+                            <button *ngIf="preguntaTerminada" mat-flat-button  [color]="paletteColour(item)" class="btn-w" >{{item.answer}}</button>
+                        </div>
+                    </ng-container>
+                    <div class="col-12"><br></div>
+                    <div class="col-4" *ngIf="preguntaTerminada">
+                        <button 
+                        *ngIf="numberQuestion + 1  == lstQuestionsSelected.length "
+                        mat-flat-button [color]="'primary'" class="btn-w"(click)="savePoints()">Finalizar</button>
+                        <button *ngIf="numberQuestion + 1  != lstQuestionsSelected.length " mat-flat-button [color]="'primary'" class="btn-w"
+                            (click)="nextQuestion()">Siguiente</button>
+                    </div>
+                </div>
+                
 
+            </div>
         </div>
     </div>
 </div>

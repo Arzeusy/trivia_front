@@ -11,10 +11,14 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { TriviaComponent } from './pages/trivia/trivia.component';
+import { GameComponent } from './pages/game/game.component';
+import { RankComponent } from './pages/rank/rank.component';
 
 
 import { NgxSpinnerModule } from "ngx-spinner";
-
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
 //  material module imports 
 
 import {MatCardModule} from '@angular/material/card';
@@ -37,10 +41,13 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import { TriviaComponent } from './pages/trivia/trivia.component';
-import { GameComponent } from './pages/game/game.component';
-import { RankComponent } from './pages/rank/rank.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar'; 
+import {MatChipsModule} from '@angular/material/chips';
+
+
+export function playerFactory() {
+  return player;
+}
 
 @NgModule({
   declarations: [
@@ -60,6 +67,7 @@ import { RankComponent } from './pages/rank/rank.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgxSpinnerModule,
+    LottieModule.forRoot({ player: playerFactory }),
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
@@ -80,7 +88,8 @@ import { RankComponent } from './pages/rank/rank.component';
     MatDialogModule,
     MatBadgeModule,
     MatTooltipModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
