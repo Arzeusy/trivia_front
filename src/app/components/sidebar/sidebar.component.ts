@@ -21,9 +21,6 @@ export class SidebarComponent implements OnInit {
   }
 
   onSubmit(event: any) {
-    console.log(event)
-
-    
 
     this.trigger.closeMenu(); 
   }

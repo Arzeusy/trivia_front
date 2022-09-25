@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService} from 'src/app/services/auth.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
  
 @Component({
   selector: 'app-signin',
@@ -18,6 +19,7 @@ export class SigninComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
      private route: Router,
+    private _snackBar: MatSnackBar
   ) {
     this.createFrm();
   }
@@ -27,8 +29,8 @@ export class SigninComponent implements OnInit {
 
   createFrm() {
     this.frmAuth = this.formBuilder.group({
-    email: ['paqui@gmail.com', [Validators.email, Validators.required]],
-    password: ['12345', [Validators.required, Validators.minLength(4)]],
+    email: ['', [Validators.email, Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(4)]],
      });
     
   }
@@ -49,11 +51,22 @@ export class SigninComponent implements OnInit {
 
   async onAuth() {
     let authenticated = await this.authService.signin(this.frmAuth.value.email, this.frmAuth.value.password);
-    console.log("info", authenticated)
+    
     if (authenticated) {
       let user = await this.authService.infoUser();
       this.route.navigate(["/"]);
+    } else {
+       this._snackBar.open('Error de autenticacion, Email o  Contraseña', 'Cerrar', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 5 * 1000,
+      });
     }
   }
 
+  cancelarfrm() {
+    this.createFrm();
+    this.authenticate.emit(true);
+
+  }
 }

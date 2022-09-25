@@ -8,7 +8,10 @@ import { AnimationOptions, BMCompleteEvent, BMCompleteLoopEvent } from 'ngx-lott
 import { AnimationItem } from 'lottie-web';
 import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 import { Router } from '@angular/router';
- 
+import {
+  MatSnackBar,
+} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-game',
@@ -52,7 +55,8 @@ export class GameComponent implements OnInit {
     private formBuilder: FormBuilder,
     private triviaService: TriviaService,
     private spinner: NgxSpinnerService,
-     private route: Router,
+    private route: Router,
+    private _snackBar: MatSnackBar
   ) {
   }
 
@@ -113,7 +117,16 @@ export class GameComponent implements OnInit {
     });
     let res = await this.triviaService.getQuestions(episodios);
     this.lstQuestions = res.data;
-    // this.lstQuestionsSelected = Array.from({ length: this.lstQuestions.length > 10 ? 10 : this.lstQuestions.length }, () => Math.floor(Math.random() * this.lstQuestions.length));
+    if (this.lstQuestions.length == 0) {
+      this._snackBar.open('No se encontraron preguntas disponibles, selecciona otro episodio por favor', 'Cerrar', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 5 * 1000,
+      });
+      this.spinner.hide();
+
+      this.route.navigate(['/']);
+    }
     do {
       const randomNumber = Math.floor(Math.random() * this.lstQuestions.length);
     

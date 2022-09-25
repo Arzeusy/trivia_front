@@ -2,7 +2,9 @@
         <div class="col-11 row justify-content-center align-items-center home" >
             <div class="col-6 txt_end">
                 <img src="assets/img/Rick-and-Morty.png" class="logo" >
-                <button mat-flat-button color="primary" class="iniciarbtn" (click)="goRoute('game')">Iniciar</button>
+                <button mat-flat-button color="primary" class="iniciarbtn" (click)="goRoute('game')">
+                    {{authenticated ? "iniciar": "Ranking"}}
+                </button>
             </div>
             <div class="col-6">
                 <img src="assets/img/portal1.png" alt="" style="width: 100%;">

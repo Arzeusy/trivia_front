@@ -46,8 +46,11 @@ export class AuthService {
 		.toPromise()
 			.then((res:any) => {
 				console.log(res);
-				this.saveInfo(res.data, "jwt")
-				return true;
+				if (res.data) {
+					this.saveInfo(res.data, "jwt")
+					return true;
+				}
+				return false;
 			})
         .catch((err:any) => { console.log ('error'); return false});
 			

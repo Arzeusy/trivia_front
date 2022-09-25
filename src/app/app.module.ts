@@ -43,7 +43,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar'; 
 import {MatChipsModule} from '@angular/material/chips';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 export function playerFactory() {
   return player;
@@ -89,7 +89,8 @@ export function playerFactory() {
     MatBadgeModule,
     MatTooltipModule,
     MatProgressBarModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
