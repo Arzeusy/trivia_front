@@ -4,7 +4,7 @@
 <div class="row  justify-content-center align-items-center h-100" >
     <div class="card-center col-11 row justify-content-center align-items-center " style="z-index: 2;">
         <div class="col-4">
-                <!-- <img src="assets/img/game.png" class=" logo"> -->
+                <img src="assets/img/thinking.png" class=" logo" *ngIf="!seeAnimation">
                 <div class="svg" id="svg" *ngIf="seeAnimation" >
                         <ng-lottie 
                         [options]="options" 
