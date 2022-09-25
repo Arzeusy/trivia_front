@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms'
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
  
 @Component({
@@ -14,6 +15,7 @@ export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
+     private route: Router,
   ) { this.createFrm() }
 
   ngOnInit(): void {
@@ -48,7 +50,9 @@ export class SignupComponent implements OnInit {
    let authenticated = await this.authService.signup(
      this.frm.value
    );
-    console.log("info", authenticated)
+   console.log("info", authenticated)
+    this.route.navigate(["/"]);
+   
     // if (authenticated) {
     //   let user = await this.authService.infoUser();
     // }

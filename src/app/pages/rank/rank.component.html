@@ -2,14 +2,81 @@
     <img src="assets/img/portal2.png" class="image">
 </div>
 <div class="row  justify-content-center align-items-center h-100">
-    <div class="card-center col-11 row justify-content-center align-items-center " style="z-index: 2;">
-        <div class="col-4 ">
+    <div class="card-rank col-11 row justify-content-center align-items-center " style="z-index: 2;">
+        
+        <div class="col-4  align-self-end">
+            <div class="places second d-flex align-items-end justify-content-center">
+                <div class="place d-flex align-items-center justify-content-center"><label for="">2</label></div>
+                <div class="points d-flex align-items-center justify-content-center">
+                    <span>{{second.points}} points</span>
+                </div>
+                <h1 >
+                    <span class="nick">@{{second.nickname}}</span>
+                    <br>
+                    <span class="name">{{second.nickname}}</span>
+                </h1>
+            </div>
         </div>
-        <div class="col-8">
-
+        <div class="col-4  align-self-end">
+            
+            <div class="places d-flex align-items-end justify-content-center">
+                <img src="assets/img/crown.png" class="crown">
+                <div class="place d-flex align-items-center justify-content-center"><label for="">1</label></div>
+                <div class="points d-flex align-items-center justify-content-center">
+                    <span>{{first.points}} points</span>
+                </div>
+                <h1>
+                <span class="nick">@{{first.nickname}}</span>
+                <br>
+                <span class="name">{{first.nickname}}</span>
+                </h1>
+            </div>
 
         </div>
+        <div class="col-4  align-self-end ">
+            <div class="places third d-flex align-items-end justify-content-center">
+                <div class="place d-flex align-items-center justify-content-center"><label for="">3</label></div>
+                <div class="points d-flex align-items-center justify-content-center">
+                    <span>{{third.points}} points</span>
+                </div>
+                <h1>
+                    <span class="nick">@{{third.nickname}}</span>
+                    <br>
+                    <span class="name">{{third.nickname}}</span>
+                </h1>
 
+            </div>
+
+        </div>
+       <div class="col-12"><br></div>
+       <div class="col-12 card-center scrollPrincipal" style="height: 50%;">
+            <mat-card  class="card-colored">
+                tu posicion es : {{placeuser + 1}}
+            </mat-card>
+            <table mat-table [dataSource]="BestPlayers" class="demo-table">
+            
+                <ng-container matColumnDef="NO">
+                    <th mat-header-cell *matHeaderCellDef>No.</th>
+                    <td mat-cell *matCellDef="let element; let i = index;">{{i + 1}}</td>
+                </ng-container>
+            
+                <ng-container matColumnDef="NICKNAME">
+                    <th mat-header-cell *matHeaderCellDef>NICKNAME</th>
+                    <td mat-cell *matCellDef="let element">{{element.nickname}}</td>
+                </ng-container>
+            
+                <ng-container matColumnDef="POINTS">
+                    <th mat-header-cell *matHeaderCellDef>POINTS</th>
+                    <td mat-cell *matCellDef="let element">{{element.points}} points</td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-card *ngIf="BestPlayers.length == 0" class="card-colored">
+                Sin registros
+            </mat-card>
+       </div>
 
     </div>
 </div>

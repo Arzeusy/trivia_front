@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { AuthService} from 'src/app/services/auth.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router';
  
 @Component({
   selector: 'app-signin',
@@ -16,6 +17,7 @@ export class SigninComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
+     private route: Router,
   ) {
     this.createFrm();
   }
@@ -50,6 +52,7 @@ export class SigninComponent implements OnInit {
     console.log("info", authenticated)
     if (authenticated) {
       let user = await this.authService.infoUser();
+      this.route.navigate(["/"]);
     }
   }
 
