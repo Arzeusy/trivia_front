@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:3000/api',
+  apiUrl: 'https://triviabackrickmorty.herokuapp.com/api',
   apiUrlRM: 'https://rickandmortyapi.com/api/episode'
 
 };
